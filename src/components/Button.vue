@@ -1,5 +1,5 @@
-<template>
-  <button class="btn" :class="getAllButtonParams()">
+<template functional>
+  <button class="btn" :class="$options.methods.getAllButtonParams(props)">
     <slot></slot>
   </button>
 </template>
@@ -26,20 +26,22 @@ export default {
     }
   },
   methods: {
-    getBackgroundColor() {
-      return this.backgroundColor ? "btn--background-color" : "";
+    getBackgroundColor(props) {
+      return props.backgroundColor ? "btn--background-color" : "";
     },
-    getFontColor() {
-      return this.fontColor ? "btn--font-color" : "";
+    getFontColor(props) {
+      return props.fontColor ? "btn--font-color" : "";
     },
-    getBoxShadow() {
-      return this.boxShadow ? "btn--shadow" : "";
+    getBoxShadow(props) {
+      return props.boxShadow ? "btn--shadow" : "";
     },
-    getOvalShape() {
-      return this.ovalShape ? "btn--oval" : "";
+    getOvalShape(props) {
+      return props.ovalShape ? "btn--oval" : "";
     },
-    getAllButtonParams() {
-      return `${this.getBackgroundColor()} ${this.getFontColor()} ${this.getBoxShadow()} ${this.getOvalShape()}`;
+    getAllButtonParams(props) {
+      return `${this.getBackgroundColor(props)} ${this.getFontColor(
+        props
+      )} ${this.getBoxShadow(props)} ${this.getOvalShape(props)}`;
     }
   }
 };
