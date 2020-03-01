@@ -23,29 +23,25 @@ export default {
   },
   render(h, { props, children }) {
     const methods = {
-      getBackgroundColor(props) {
+      getBackgroundColor() {
         return props.backgroundColor ? "btn--background-color" : "";
       },
-      getFontColor(props) {
+      getFontColor() {
         return props.fontColor ? "btn--font-color" : "";
       },
-      getBoxShadow(props) {
+      getBoxShadow() {
         return props.boxShadow ? "btn--shadow" : "";
       },
-      getOvalShape(props) {
+      getOvalShape() {
         return props.ovalShape ? "btn--oval" : "";
       },
-      getAllButtonParams(props) {
-        return `${this.getBackgroundColor(props)} ${this.getFontColor(
-          props
-        )} ${this.getBoxShadow(props)} ${this.getOvalShape(props)}`;
+      getAllButtonParams() {
+        return `${this.getBackgroundColor()} ${this.getFontColor()} ${this.getBoxShadow()} ${this.getOvalShape()}`;
       }
     };
 
     return (
-      <button class={`btn ${methods.getAllButtonParams(props)}`}>
-        {children}
-      </button>
+      <button class={`btn ${methods.getAllButtonParams()}`}>{children}</button>
     );
   }
 };
