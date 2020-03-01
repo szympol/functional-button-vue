@@ -21,21 +21,30 @@ export default {
       default: false
     }
   },
-  render(h, context) {
-    const getBackgroundColor = props =>
-      props.backgroundColor ? "btn--background-color" : "";
-    const getFontColor = props => (props.fontColor ? "btn--font-color" : "");
-    const getBoxShadow = props => (props.boxShadow ? "btn--shadow" : "");
-    const getOvalShape = props => (props.ovalShape ? "btn--oval" : "");
-
-    const getAllButtonParams = props =>
-      `${getBackgroundColor(props)} ${getFontColor(props)} ${getBoxShadow(
-        props
-      )} ${getOvalShape(props)}`;
+  render(h, { props, children }) {
+    const methods = {
+      getBackgroundColor(props) {
+        return props.backgroundColor ? "btn--background-color" : "";
+      },
+      getFontColor(props) {
+        return props.fontColor ? "btn--font-color" : "";
+      },
+      getBoxShadow(props) {
+        return props.boxShadow ? "btn--shadow" : "";
+      },
+      getOvalShape(props) {
+        return props.ovalShape ? "btn--oval" : "";
+      },
+      getAllButtonParams(props) {
+        return `${this.getBackgroundColor(props)} ${this.getFontColor(
+          props
+        )} ${this.getBoxShadow(props)} ${this.getOvalShape(props)}`;
+      }
+    };
 
     return (
-      <button class={`btn ${getAllButtonParams(context.props)}`}>
-        {context.children}
+      <button class={`btn ${methods.getAllButtonParams(props)}`}>
+        {children}
       </button>
     );
   }
